@@ -1,57 +1,64 @@
 <template>
-    <div id="container"></div>
+  <div id="container"></div>
 </template>
 
 <script>
-import * as Three from 'three'
+import * as Three from "three";
 
 export default {
-  name: 'ThreeTest',
-  data() {
+  name: "ThreeTest",
+  /* data() {
     return {
       camera: null,
       scene: null,
       renderer: null,
-      mesh: null
-    }
-  },
+      mesh: null,
+    };
+  }, */
   methods: {
-    init: function() {
-        let container = document.getElementById('container');
+    init: function () {
+      let container = document.getElementById("container");
 
-        this.camera = new Three.PerspectiveCamera(70, container.clientWidth/container.clientHeight, 0.01, 10);
-        this.camera.position.z = 1;
 
-        this.scene = new Three.Scene();
+      this.camera = new Three.PerspectiveCamera(
+        75,
+        container.clientWidth / container.clientHeight,
+        0.01,
+        10
+      );
+      this.camera.position.z = 1;
 
-        let geometry = new Three.BoxGeometry(0.2, 0.2, 0.2);
-        let material = new Three.MeshNormalMaterial();
+      this.scene = new Three.Scene();
 
-        this.mesh = new Three.Mesh(geometry, material);
-        this.scene.add(this.mesh);
+      let geometry = new Three.BoxGeometry(0.2, 0.2, 0.2);
+      let material = new Three.MeshNormalMaterial();
 
-        this.renderer = new Three.WebGLRenderer({antialias: true});
-        this.renderer.setSize(container.clientWidth, container.clientHeight);
-        container.appendChild(this.renderer.domElement);
+      this.mesh = new Three.Mesh(geometry, material);
+      this.scene.add(this.mesh);
 
+      this.renderer = new Three.WebGLRenderer({ antialias: true, alpha: true });
+      this.renderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(this.renderer.domElement);
     },
-    animate: function() {
-        requestAnimationFrame(this.animate);
-        this.mesh.rotation.x += 0.01;
-        this.mesh.rotation.y += 0.02;
-        this.renderer.render(this.scene, this.camera);
-    }
+    animate: function () {
+      requestAnimationFrame(this.animate);
+      this.mesh.rotation.x += 0.01;
+      this.mesh.rotation.y += 0.01;
+      this.renderer.render(this.scene, this.camera);
+    },
   },
   mounted() {
-      this.init();
-      this.animate();
-  }
-}
+    this.init();
+    this.animate();
+  },
+};
 </script>
 
 <style scoped>
-    #container {
-      width: 100px;
-      height: 100px;
-    }
+#container {
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
+  margin-top: -200px;
+}
 </style>
