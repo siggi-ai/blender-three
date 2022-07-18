@@ -20,6 +20,8 @@ export default {
     init: function () {
       let container = document.getElementById("container");
 
+      console.log(GLTFLoader);
+
       this.camera = new Three.PerspectiveCamera(
         75,
         container.clientWidth / container.clientHeight,
@@ -30,15 +32,31 @@ export default {
 
       this.scene = new Three.Scene();
 
+      let geometry = new Three.BoxGeometry(0.2, 0.2, 0.2);
+      let material = new Three.MeshNormalMaterial();
+
+      this.mesh = new Three.Mesh(geometry, material);
+      this.scene.add(this.mesh);
+/* 
       let Loader = new GLTFLoader();
       Loader.load('../don2-6-forVSC.gltf', function (gltf) {
       this.scene.add(gltf.scene);
-      });
-    },
+      }); */
 
+      this.renderer = new Three.WebGLRenderer({ antialias: true, alpha: true });
+      this.renderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(this.renderer.domElement);
+    },
+    animate: function () {
+      requestAnimationFrame(this.animate);
+      this.mesh.rotation.x += 0.01;
+      this.mesh.rotation.y += 0.01;
+      this.renderer.render(this.scene, this.camera);
+    },
   },
   mounted() {
     this.init();
+    this.animate();
   },
 };
 </script>
