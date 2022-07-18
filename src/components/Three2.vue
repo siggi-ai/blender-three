@@ -37,10 +37,17 @@ export default {
 
       this.mesh = new Three.Mesh(geometry, material);
       this.scene.add(this.mesh);
-/* 
-      let Loader = new GLTFLoader();
-      Loader.load('../don2-6-forVSC.gltf', function (gltf) {
+
+      this.Loader = new GLTFLoader();
+      this.Loader.load('don2-6-forVSC.glb', function (gltf) {
       this.scene.add(gltf.scene);
+      });
+
+/*       this.gltfLoader = new GLTFLoader();
+      const url = 'don2-6-forVSC.glb';
+      this.gltfLoader.load(url, (gltf) => {
+      this.root = gltf.scene;
+      this.scene.add(this.root);
       }); */
 
       this.renderer = new Three.WebGLRenderer({ antialias: true, alpha: true });
