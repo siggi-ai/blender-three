@@ -20,13 +20,13 @@ export default {
     init: function () {
       let container = document.getElementById("container");
 
-console.log(GLTFLoader);
+      console.log(GLTFLoader);
 
-      const gltfLoader = new GLTFLoader();
+      this.gltfLoader = new GLTFLoader();
       const url = 'don2-6-forVSC.gltf';
-      gltfLoader.load(url, (gltf) => {
-        const root = gltf.scene;
-        this.scene.add(root);
+      this.gltfLoader.load(url, (gltf) => {
+        this.root = gltf.scene;
+        this.scene.add(this.root);
       });
     
 
@@ -60,7 +60,6 @@ console.log(GLTFLoader);
   mounted() {
     this.init();
     this.animate();
-    this.gltfLoader();
   },
 };
 </script>
