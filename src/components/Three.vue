@@ -4,6 +4,7 @@
 
 <script>
 import * as Three from "three";
+import GLTFLoader from 'three-gltf-loader';
 
 export default {
   name: "ThreeTest",
@@ -19,6 +20,15 @@ export default {
     init: function () {
       let container = document.getElementById("container");
 
+console.log(GLTFLoader);
+
+      const gltfLoader = new GLTFLoader();
+      const url = 'don2-6-forVSC.gltf';
+      gltfLoader.load(url, (gltf) => {
+        const root = gltf.scene;
+        this.scene.add(root);
+      });
+    
 
       this.camera = new Three.PerspectiveCamera(
         75,
@@ -50,6 +60,7 @@ export default {
   mounted() {
     this.init();
     this.animate();
+    this.gltfLoader();
   },
 };
 </script>
