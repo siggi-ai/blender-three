@@ -1,15 +1,15 @@
 <template>
 <!--   <img alt="Vue logo" src="./assets/logo.png"> -->
-  <Three msg="Welcome to Your Vue.js App"/>
+  <Three2 />
 </template>
 
 <script>
-import Three from './components/Three.vue'
+import Three2 from './components/Three2.vue'
 
 export default {
   name: 'App',
   components: {
-    Three
+    Three2
   }
 }
 </script>

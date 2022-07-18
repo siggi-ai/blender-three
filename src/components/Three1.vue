@@ -20,16 +20,6 @@ export default {
     init: function () {
       let container = document.getElementById("container");
 
-      console.log(GLTFLoader);
-
-      this.gltfLoader = new GLTFLoader();
-      const url = 'don2-6-forVSC.gltf';
-      this.gltfLoader.load(url, (gltf) => {
-        this.root = gltf.scene;
-        this.scene.add(this.root);
-      });
-    
-
       this.camera = new Three.PerspectiveCamera(
         75,
         container.clientWidth / container.clientHeight,
@@ -56,10 +46,17 @@ export default {
       this.mesh.rotation.y += 0.01;
       this.renderer.render(this.scene, this.camera);
     },
+    gtlfLoader: function () {
+      let Loader = new GLTFLoader();
+      Loader.load('../don2-6-forVSC.gltf', function (gltf) {
+      this.scene.add(gltf.scene);
+      });
+    }
   },
   mounted() {
     this.init();
     this.animate();
+    this.gtlfLoader();
   },
 };
 </script>
