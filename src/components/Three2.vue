@@ -36,12 +36,7 @@ export default {
       let material = new Three.MeshNormalMaterial();
 
       this.mesh = new Three.Mesh(geometry, material);
-      this.scene.add(this.mesh);
-
-      this.Loader = new GLTFLoader();
-      this.Loader.load('don2-6-forVSC.glb', function (gltf) {
-      this.scene.add(gltf.scene);
-      });
+      this.scene.add(this.mesh);    
 
 /*       this.gltfLoader = new GLTFLoader();
       const url = 'don2-6-forVSC.glb';
@@ -53,6 +48,12 @@ export default {
       this.renderer = new Three.WebGLRenderer({ antialias: true, alpha: true });
       this.renderer.setSize(container.clientWidth, container.clientHeight);
       container.appendChild(this.renderer.domElement);
+
+
+      this.Loader = new GLTFLoader();
+      this.Loader.load('don2-6-forVSC.glb', function (gltf) {
+      this.scene.add(gltf.scene);
+      });
     },
     animate: function () {
       requestAnimationFrame(this.animate);
